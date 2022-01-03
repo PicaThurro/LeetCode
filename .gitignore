@@ -1,2 +1,5 @@
 /LeetCode.iml
-/src/com/tyj/test
+/src/com/tyj/test/
+/.idea
+/.gitignore
+/src/com/tyj/test/递归.java
