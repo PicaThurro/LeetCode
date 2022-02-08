@@ -21,11 +21,6 @@ public class _347_前k个高频元素 {
     public int[] topKFrequent(int[] nums, int k) {
         Map<Integer,Integer> map=new HashMap<>();
 
-        for (int i = 0; i < nums.length; i++) {
-            //用数字作为key，出现的次数作为value存入map
-            map.put(nums[i],map.getOrDefault(nums[i],0)+1 );
-        }
-
         //声明一个优先队列(大根)，泛型数组，int[0]代表出现的次数,int[1]代表这个出现的数字
         PriorityQueue<int[]> queue=new PriorityQueue<>(new Comparator<int[]>() {
             @Override
@@ -34,6 +29,11 @@ public class _347_前k个高频元素 {
                 return o2[0]-o1[0];
             }
         });
+
+        for (int i = 0; i < nums.length; i++) {
+            //用数字作为key，出现的次数作为value存入map
+            map.put(nums[i],map.getOrDefault(nums[i],0)+1 );
+        }
 
         //然后遍历map，把value放到int[0]，把key放在int[1]然后入队
         for (Integer integer : map.keySet()) {

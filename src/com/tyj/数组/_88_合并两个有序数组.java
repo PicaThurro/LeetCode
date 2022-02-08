@@ -26,7 +26,7 @@ public class _88_合并两个有序数组 {
      * 官方题解:方法三
      * 利用好两个都是有序数组的条件
      * 初始化三个指针
-     *          1.p1指向nums1的真实长度
+     *          1.p1指向nums1的真实长度的尾部
      *          2.i指向nums1的尾部
      *          3.p2指向nums2的尾部
      * 首先判断p1是否为负数，如果p1是负数的话，就意味着nums1只需要合并进来一个元素；p2左移后小于0，结束循环。
@@ -40,27 +40,28 @@ public class _88_合并两个有序数组 {
      * @param n
      */
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        int p1 = m - 1;
-        int i = nums1.length - 1;
-        int p2 = nums2.length - 1;
-        int tem = 0;
-        while (p2 >= 0) {
-            if (p1 < 0) {
-                nums1[i] = nums2[p2];
-                i--;
-                p2--;
-            } else if (nums2[p2] >= nums1[p1]) {
-                nums1[i] = nums2[p2];
-                i--;
-                p2--;
-            } else {
-                tem = nums1[i];
-                nums1[i] = nums1[p1];
-                nums1[p1] = tem;
-                p1--;
-                i--;
-            }
-        }
+       int p1=m-1;
+       int i= nums1.length-1;
+       int p2=n-1;
+       while (p2>=0){
+           if (p1<0){
+               nums1=nums2;
+               i--;
+               p2--;
+           }
+           if (nums2[p2]>=nums1[p1]){
+               nums1[i]=nums2[p2];
+               i--;
+               p2--;
+           }else {
+               int tem=nums1[p1];
+               nums1[p1]=nums1[i];
+               nums1[i]=tem;
+               i--;
+               p1--;
+           }
+       }
+
     }
 
 }
